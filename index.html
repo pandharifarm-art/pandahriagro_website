@@ -1,0 +1,222 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pandhari Farm Nursery - Quality Saplings</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Bricolage+Grotesque:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon-emerald: #10b981;
+            --neon-pitaya: #ec4899;
+            --neon-citrus: #f59e0b;
+        }
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: #fdfdfd;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+        }
+        
+        /* Vibrant Frit Texture - Enhanced */
+        .frit-overlay {
+            background-image: 
+                radial-gradient(rgba(16, 185, 129, 0.08) 1px, transparent 0),
+                radial-gradient(rgba(16, 185, 129, 0.03) 1px, transparent 0);
+            background-size: 30px 30px, 15px 15px;
+            background-position: 0 0, 15px 15px;
+        }
+
+        /* Organic Mesh Background */
+        .mesh-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-color: #fdfdfd;
+            background-image: 
+                radial-gradient(at 0% 0%, hsla(158, 64%, 90%, 1) 0, transparent 50%), 
+                radial-gradient(at 50% 0%, hsla(164, 73%, 94%, 1) 0, transparent 50%), 
+                radial-gradient(at 100% 0%, hsla(190, 80%, 93%, 1) 0, transparent 50%);
+            opacity: 0.6;
+        }
+
+        /* Chromatic Glass - Liquid Effect */
+        .glass-vibrant {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(14px) saturate(180%);
+            -webkit-backdrop-filter: blur(14px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 
+                0 4px 24px -1px rgba(0, 0, 0, 0.03),
+                0 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+        }
+
+        .neon-border {
+            border: 1px solid rgba(16, 185, 129, 0.15);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .neon-border:hover {
+            border-color: rgba(16, 185, 129, 0.6);
+            box-shadow: 
+                0 20px 40px -10px rgba(16, 185, 129, 0.12),
+                0 0 0 1px rgba(16, 185, 129, 0.2);
+            transform: translateY(-8px);
+        }
+
+        /* Specular Sweep */
+        .specular-sweep {
+            position: relative;
+            overflow: hidden;
+        }
+        .specular-sweep::after {
+            content: "";
+            position: absolute;
+            top: -150%;
+            left: -150%;
+            width: 300%;
+            height: 300%;
+            background: linear-gradient(
+                45deg,
+                transparent 45%,
+                rgba(255, 255, 255, 0.4) 50%,
+                transparent 55%
+            );
+            transition: all 0.75s ease;
+            pointer-events: none;
+            opacity: 0;
+            transform: rotate(25deg);
+        }
+        .specular-sweep:hover::after {
+            top: 50%;
+            left: 50%;
+            opacity: 1;
+        }
+
+        /* Animated Text Gradients */
+        .text-vibrant-gradient {
+            background: linear-gradient(to right, #059669, #10b981, #34d399, #059669);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 300% auto;
+            animation: shine 6s ease-in-out infinite;
+        }
+
+        @keyframes shine {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating Animation */
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(1deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        .animate-float-delayed {
+            animation: float 8s ease-in-out infinite;
+            animation-delay: 2s;
+        }
+
+        /* Reveal on scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Vibrant Scrollbar */
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, #10b981, #059669);
+            border-radius: 20px;
+        }
+
+        /* Custom Cursor for links */
+        a:hover, button:hover {
+            cursor: pointer;
+        }
+
+        /* CTA Pulsing */
+        .pulse-emerald {
+            box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
+            animation: pulse-emerald 2s infinite;
+        }
+        @keyframes pulse-emerald {
+            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(16, 185, 129, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+    </style>
+
+<link rel="stylesheet" href="/index.css">
+<script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.40.0",
+    "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4",
+    "recharts": "https://esm.sh/recharts@^3.7.0"
+  }
+}
+</script>
+  <script type="module" crossorigin src="/assets/index-D0iykOiJ.js"></script>
+</head>
+<body class="frit-overlay">
+    <div class="mesh-bg"></div>
+    <div id="root"></div>
+    <script>
+        // Reveal on scroll observer
+        const observerOptions = {
+            threshold: 0.1
+        };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        window.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        });
+
+        // MutationObserver to catch dynamically added elements
+        const mutationObserver = new MutationObserver((mutations) => {
+            mutations.forEach(mutation => {
+                mutation.addedNodes.forEach(node => {
+                    if (node.nodeType === 1) {
+                        if (node.classList.contains('reveal')) observer.observe(node);
+                        node.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+                    }
+                });
+            });
+        });
+        mutationObserver.observe(document.body, { childList: true, subtree: true });
+    </script>
+</body>
+</html>
