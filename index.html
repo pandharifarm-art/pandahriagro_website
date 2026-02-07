@@ -1,222 +1,849 @@
-
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pandhari Farm Nursery - Quality Saplings</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Bricolage+Grotesque:wght@400;700;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --neon-emerald: #10b981;
-            --neon-pitaya: #ec4899;
-            --neon-citrus: #f59e0b;
-        }
-        
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background: #fdfdfd;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-        }
+<meta charset="UTF-8">
+<title>Pandhari Farm & Nursery</title>
 
-        h1, h2, h3 {
-            font-family: 'Bricolage Grotesque', sans-serif;
-        }
-        
-        /* Vibrant Frit Texture - Enhanced */
-        .frit-overlay {
-            background-image: 
-                radial-gradient(rgba(16, 185, 129, 0.08) 1px, transparent 0),
-                radial-gradient(rgba(16, 185, 129, 0.03) 1px, transparent 0);
-            background-size: 30px 30px, 15px 15px;
-            background-position: 0 0, 15px 15px;
-        }
-
-        /* Organic Mesh Background */
-        .mesh-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background-color: #fdfdfd;
-            background-image: 
-                radial-gradient(at 0% 0%, hsla(158, 64%, 90%, 1) 0, transparent 50%), 
-                radial-gradient(at 50% 0%, hsla(164, 73%, 94%, 1) 0, transparent 50%), 
-                radial-gradient(at 100% 0%, hsla(190, 80%, 93%, 1) 0, transparent 50%);
-            opacity: 0.6;
-        }
-
-        /* Chromatic Glass - Liquid Effect */
-        .glass-vibrant {
-            background: rgba(255, 255, 255, 0.65);
-            backdrop-filter: blur(14px) saturate(180%);
-            -webkit-backdrop-filter: blur(14px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            box-shadow: 
-                0 4px 24px -1px rgba(0, 0, 0, 0.03),
-                0 0 1px 0 rgba(255, 255, 255, 0.5) inset;
-        }
-
-        .neon-border {
-            border: 1px solid rgba(16, 185, 129, 0.15);
-            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-        .neon-border:hover {
-            border-color: rgba(16, 185, 129, 0.6);
-            box-shadow: 
-                0 20px 40px -10px rgba(16, 185, 129, 0.12),
-                0 0 0 1px rgba(16, 185, 129, 0.2);
-            transform: translateY(-8px);
-        }
-
-        /* Specular Sweep */
-        .specular-sweep {
-            position: relative;
-            overflow: hidden;
-        }
-        .specular-sweep::after {
-            content: "";
-            position: absolute;
-            top: -150%;
-            left: -150%;
-            width: 300%;
-            height: 300%;
-            background: linear-gradient(
-                45deg,
-                transparent 45%,
-                rgba(255, 255, 255, 0.4) 50%,
-                transparent 55%
-            );
-            transition: all 0.75s ease;
-            pointer-events: none;
-            opacity: 0;
-            transform: rotate(25deg);
-        }
-        .specular-sweep:hover::after {
-            top: 50%;
-            left: 50%;
-            opacity: 1;
-        }
-
-        /* Animated Text Gradients */
-        .text-vibrant-gradient {
-            background: linear-gradient(to right, #059669, #10b981, #34d399, #059669);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-size: 300% auto;
-            animation: shine 6s ease-in-out infinite;
-        }
-
-        @keyframes shine {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* Floating Animation */
-        .animate-float {
-            animation: float 6s ease-in-out infinite;
-        }
-        @keyframes float {
-            0% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-15px) rotate(1deg); }
-            100% { transform: translateY(0px) rotate(0deg); }
-        }
-
-        .animate-float-delayed {
-            animation: float 8s ease-in-out infinite;
-            animation-delay: 2s;
-        }
-
-        /* Reveal on scroll */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.2, 1, 0.3, 1);
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Vibrant Scrollbar */
-        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
-        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: linear-gradient(to bottom, #10b981, #059669);
-            border-radius: 20px;
-        }
-
-        /* Custom Cursor for links */
-        a:hover, button:hover {
-            cursor: pointer;
-        }
-
-        /* CTA Pulsing */
-        .pulse-emerald {
-            box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
-            animation: pulse-emerald 2s infinite;
-        }
-        @keyframes pulse-emerald {
-            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(16, 185, 129, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
-        }
-    </style>
-
-<link rel="stylesheet" href="/index.css">
-<script type="importmap">
-{
-  "imports": {
-    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
-    "@google/genai": "https://esm.sh/@google/genai@^1.40.0",
-    "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
-    "react/": "https://esm.sh/react@^19.2.4/",
-    "react": "https://esm.sh/react@^19.2.4",
-    "recharts": "https://esm.sh/recharts@^3.7.0"
-  }
+<style>
+body{
+    margin:0;
+    font-family:"Poppins","Segoe UI","Mangal",sans-serif;
+    background:#f4fff4;
+    color:#1b1b1b;
 }
-</script>
-  <script type="module" crossorigin src="/assets/index-D0iykOiJ.js"></script>
+header{
+    background:linear-gradient(135deg,#1b5e20,#4caf50);
+    color:#fff;
+    text-align:center;
+    padding:30px 20px;
+}
+header img{
+    width:140px;
+    margin-bottom:10px;
+}
+section{
+    background:#ffffff;
+    margin:25px auto;
+    padding:25px;
+    max-width:1100px;
+    border-radius:12px;
+    box-shadow:0 6px 15px rgba(0,0,0,0.08);
+}
+h1,h2,h3{
+    color:#1b5e20;
+}
+.btn{
+    display:inline-block;
+    background:#2e7d32;
+    color:#fff;
+    padding:10px 18px;
+    border-radius:25px;
+    text-decoration:none;
+    margin:6px;
+    font-weight:600;
+}
+.btn:hover{
+    background:#1b5e20;
+}
+.social a{
+    background:#388e3c;
+}
+footer{
+    background:#1b5e20;
+    color:#fff;
+    text-align:center;
+    padding:12px;
+}
+</style>
 </head>
-<body class="frit-overlay">
-    <div class="mesh-bg"></div>
-    <div id="root"></div>
-    <script>
-        // Reveal on scroll observer
-        const observerOptions = {
-            threshold: 0.1
-        };
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, observerOptions);
 
-        window.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-        });
+<body>
 
-        // MutationObserver to catch dynamically added elements
-        const mutationObserver = new MutationObserver((mutations) => {
-            mutations.forEach(mutation => {
-                mutation.addedNodes.forEach(node => {
-                    if (node.nodeType === 1) {
-                        if (node.classList.contains('reveal')) observer.observe(node);
-                        node.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-                    }
-                });
-            });
-        });
-        mutationObserver.observe(document.body, { childList: true, subtree: true });
-    </script>
+<!-- ===== WELCOME PAGE ===== -->
+<header>
+    <!-- LOGO -->
+    <img src="logo.webp" alt="Pandhari Farm Nursery Logo">
+
+    <h1>Welcome to Pandhari Farm & Nursery</h1>
+    <p>Quality Plants • Trusted Nursery • Farmer First</p>
+
+    <a class="btn" href="tel:7709200273">📞 Call</a>
+    <a class="btn" href="https://wa.me/917709200273" target="_blank">💬 WhatsApp</a>
+</header>
+
+<!-- ===== ABOUT ===== -->
+<section>
+<h2>About Pandhari Farm & Nursery</h2>
+<p>
+<b>Pandhari Farm & Nursery, Sangola</b><br>
+“शेतकऱ्यांच्या प्रगतीचा आधार – दर्जेदार रोपे हीच आमची ओळख”
+</p>
+<p>
+आम्ही अनेक वर्षांपासून शेतकऱ्यांना उच्च दर्जाची, grafted व खात्रीशीर
+फळझाडांची रोपे पुरवत आहोत. लागवडीपासून काढणीपर्यंत योग्य मार्गदर्शन
+देणे ही आमची खासियत आहे.
+</p>
+</section>
+
+<!-- ===== SERVICES / INFORMATION ===== -->
+<section>
+<h2>Our Speciality</h2>
+<ul>
+<li>Grafted & Certified Fruit Plants</li>
+<li>Guava, Apple Ber, Mango & Other Varieties</li>
+<li>Plantation Guidance</li>
+<li>Farmer Friendly Support</li>
+<li>Export Quality Varieties</li>
+</ul>
+</section>
+
+<!-- ===== LOCATION ===== -->
+<section>
+<h2>📍 Location</h2>
+<p>
+Pandhari Farm & Nursery<br>
+Sangola, Maharashtra
+</p>
+
+<!-- GOOGLE MAP LINK -->
+<a class="btn" 
+href="https://www.google.com/maps/search/Pandhari+Farm+Nursery+Sangola" 
+target="_blank">
+View on Google Map
+</a>
+</section>
+
+<!-- ===== SOCIAL MEDIA ===== -->
+<section class="social">
+<h2>Follow Us</h2>
+
+<a class="btn" href="https://www.instagram.com/pandhari_agrofarm?igsh=MmhiMDF1dmNsMHVi" target="_blank">
+Instagram
+</a>
+
+<a class="btn" href="https://www.facebook.com/share/18JHNQJVV9/?mibextid=wwXIfr" target="_blank">
+Facebook
+</a>
+
+<a class="btn" href="https://youtube.com/@pandharifarm?si=EhS3Uh1rP2DfEoP7" target="_blank">
+YouTube
+</a>
+</section>
+
+<!-- ===== CONTACT DETAILS ===== -->
+<section>
+<h2>📞 Contact Details</h2>
+<p>
+<b>Mobile:</b> 7709200273<br>
+<b>WhatsApp:</b> 7709200273<br>
+<b>Email:</b> pandharifarm@gmail.com
+</p>
+</section>
+
+<footer>
+© 2026 Pandhari Farm & Nursery | All Rights Reserved
+</footer>
+
 </body>
 </html>
+
+<section>
+<h2>🌱 शेतकऱ्यांसाठी संपूर्ण मार्गदर्शन</h2>
+
+<h3>1️⃣ रोपे घेताना काळजी</h3>
+<ul>
+<li>नेहमी grafted / certified रोपे घ्या</li>
+<li>मुळं पांढरी व ताजी असावीत</li>
+<li>रोपाची उंची 2–3 फूट योग्य</li>
+<li>पॉलिथीन फाटलेली नसावी</li>
+<li>पिवळसर, रोगट पाने असलेली रोपे टाळा</li>
+</ul>
+
+<h3>2️⃣ लागवडीपूर्वी जमीन तयारी</h3>
+<ul>
+<li>खड्डा: 2×2×2 किंवा 3×3×3 फूट</li>
+<li>15 दिवस आधी खड्डे उघडे ठेवा</li>
+<li>10–15 kg शेणखत</li>
+<li>250 g SSP</li>
+<li>50 g Trichoderma</li>
+<li>वरची माती मिसळून भरा</li>
+<li><b>ताजं शेणखत टाकू नका</b></li>
+</ul>
+
+<h3>3️⃣ लागवड करताना चुका टाळा</h3>
+<ul>
+<li>रोप फार खोल लावू नका</li>
+<li>कलम मातीखाली जाऊ देऊ नका</li>
+<li>लागवडीनंतर लगेच पाणी द्या</li>
+</ul>
+
+<h3>4️⃣ पाणी व्यवस्थापन</h3>
+<ul>
+<li>पहिलं वर्ष: 8–10 दिवसांनी पाणी</li>
+<li>पावसाळ्यात पाणी बंद</li>
+<li>पाणी साचू देऊ नका</li>
+<li>ड्रिप सिंचन उत्तम</li>
+</ul>
+
+<h3>5️⃣ खत व्यवस्थापन</h3>
+<ul>
+<li>पहिलं वर्ष: 10–15 kg शेणखत / झाड</li>
+<li>NPK कमी प्रमाणात, 2 हप्त्यात</li>
+<li>दुसऱ्या वर्षापासून वर्षातून 2 वेळा शेणखत</li>
+<li>फळधारणेनंतर पोटॅश जास्त</li>
+</ul>
+
+<h3>6️⃣ रोग व किड नियंत्रण</h3>
+<ul>
+<li>फळमाशी: 10 traps / एकर</li>
+<li>पडलेली फळं नष्ट करा</li>
+<li>भुरी / करपा: सुरुवातीलाच फवारणी</li>
+</ul>
+
+<h3>7️⃣ छाटणी (Pruning)</h3>
+<ul>
+<li>ॲपल बोर: एप्रिल–मे अनिवार्य</li>
+<li>पेरू: हलकी छाटणी</li>
+<li>आंबा: जास्त छाटणी टाळा</li>
+</ul>
+
+<h3>8️⃣ बहार व्यवस्थापन (पेरू)</h3>
+<ul>
+<li>योग्य वेळी पाणी तोडा</li>
+<li>झाडाला stress द्या</li>
+<li>नंतर खत + पाणी द्या</li>
+</ul>
+
+<h3>9️⃣ काढणी</h3>
+<ul>
+<li>खूप कच्ची किंवा खूप पिकलेली फळं तोडू नका</li>
+<li>सकाळी लवकर काढणी करा</li>
+<li>फळं सावलीत ठेवा</li>
+</ul>
+
+<h3>🔟 विक्री व मार्केटिंग</h3>
+<ul>
+<li>आधीच व्यापाऱ्याशी बोलणी ठेवा</li>
+<li>सगळी फळं एकाच दिवशी तोडू नका</li>
+<li>Premium varieties साठी वेगळा बाजार</li>
+</ul>
+</section>
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="UTF-8">
+<title>Fruit Varieties Guide</title>
+
+<style>
+/* ===== FONT & STYLE ===== */
+body{
+    font-family: "Noto Serif Devanagari", "Mangal", "Segoe UI", sans-serif;
+    background:#f5fff5;
+    color:#1b1b1b;
+    line-height:1.7;
+    padding:20px;
+}
+
+h1,h2,h3{
+    font-family:"Poppins","Segoe UI",sans-serif;
+    color:#1b5e20;
+}
+
+h2{
+    border-left:6px solid #4caf50;
+    padding-left:10px;
+    margin-top:40px;
+}
+
+h3{
+    color:#2e7d32;
+    margin-top:25px;
+}
+
+.section{
+    background:#ffffff;
+    padding:20px;
+    margin-bottom:25px;
+    border-radius:10px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.08);
+}
+
+ul{
+    margin-left:20px;
+}
+
+li{
+    margin-bottom:6px;
+}
+
+.badge{
+    display:inline-block;
+    background:#e8f5e9;
+    color:#1b5e20;
+    padding:4px 10px;
+    border-radius:20px;
+    font-size:14px;
+    margin-bottom:10px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🌱 शेतकऱ्यांसाठी फळझाड मार्गदर्शन</h1>
+
+<div class="section">
+<h2>🍐 पेरू (Guava) – Varieties</h2>
+
+<h3>Red Diamond Guava</h3>
+<ul>
+<li>फळ: लालसर गर, गोडसर, कमी बिया</li>
+<li>लागवड: 6×8 किंवा 8×10 फूट</li>
+<li>खत: NPK + Organic manure</li>
+<li>रोग: फळमाशी, भुरी</li>
+<li>काढणी: 1 वर्षानंतर; 2 बहार</li>
+<li>किंमत: Premium demand</li>
+</ul>
+
+<h3>Black Diamond Guava</h3>
+<ul>
+<li>फळ: जांभळट साल, गुलाबी गर</li>
+<li>लागवड: 8×10 फूट</li>
+<li>खत: NPK + Organic manure</li>
+<li>रोग: फळमाशी</li>
+<li>काढणी: 1–2 वर्षांत</li>
+<li>किंमत: Rare, premium</li>
+</ul>
+
+<h3>Taiwan Pink Guava</h3>
+<ul>
+<li>फळ: गुलाबी गर, 15 दिवस shelf life</li>
+<li>लागवड: Loamy soil (pH 5.5–7.0)</li>
+<li>खत: Organic + micronutrients</li>
+<li>उत्पादन: 9000 kg/acre</li>
+<li>किंमत: Export quality</li>
+</ul>
+
+<h3>VNR Bihi Guava</h3>
+<ul>
+<li>फळ: 300g–1.2kg आकार</li>
+<li>लागवड: 10×10 फूट (grafted)</li>
+<li>खत: Balanced NPK</li>
+<li>काढणी: 10–12 महिने</li>
+<li>किंमत: Export premium</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>🍎 ॲपल बोर (Apple Ber)</h2>
+
+<h3>Green Apple Ber</h3>
+<ul>
+<li>हिरवट, कुरकुरीत, गोडसर</li>
+<li>लागवड: 10×10 फूट</li>
+<li>छाटणी: एप्रिल–मे</li>
+<li>काढणी: नोव्हेंबर–फेब्रुवारी</li>
+</ul>
+
+<h3>Ball Sundari</h3>
+<ul>
+<li>मोठा आकार, लालसर रंग</li>
+<li>लागवड: 10×12 फूट</li>
+<li>काढणी: हिवाळा</li>
+<li>Premium demand</li>
+</ul>
+
+<h3>Miss India</h3>
+<ul>
+<li>आकर्षक लाल रंग</li>
+<li>कमी पाणी लागते</li>
+<li>काढणी: नोव्हेंबर–जानेवारी</li>
+<li>Export demand</li>
+</ul>
+
+<h3>Red King</h3>
+<ul>
+<li>गडद लाल, गोडसर</li>
+<li>लागवड: 10×12 फूट</li>
+<li>काढणी: हिवाळा</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>🥭 आंबा (Mango)</h2>
+
+<h3>Kesar</h3>
+<ul>
+<li>गोडसर, सुगंधी</li>
+<li>लागवड: 15×15 फूट</li>
+<li>काढणी: 3–4 वर्षांत</li>
+</ul>
+
+<h3>Miyazaki</h3>
+<ul>
+<li>अतिशय महाग, लालसर रंग</li>
+<li>Controlled environment</li>
+<li>काढणी: 4–5 वर्षांत</li>
+</ul>
+
+<h3>Hapus (Alphonso)</h3>
+<ul>
+<li>अतिशय गोड व सुगंधी</li>
+<li>काढणी: एप्रिल–मे</li>
+</ul>
+
+<h3>Amrapali</h3>
+<ul>
+<li>Hybrid, high yield</li>
+<li>Dense plantation</li>
+<li>काढणी: 3–4 वर्षांत</li>
+</ul>
+
+<h3>Thai All Season</h3>
+<ul>
+<li>वर्षातून 2 वेळा फळ</li>
+<li>Commercial variety</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>🦠 आंब्याचे रोग व नियंत्रण</h2>
+<ul>
+<li>भुरी: Wettable Sulphur 2g/L</li>
+<li>करपा: Copper Oxychloride 3g/L</li>
+<li>हॉपर्स: Imidacloprid / Thiamethoxam</li>
+<li>फळमाशी: Methyl eugenol traps</li>
+</ul>
+</div>
+
+</body>
+</html>   mobile type kr <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Pandhari Farm & Nursery</title>
+
+<style>
+body{
+    margin:0;
+    font-family:"Poppins","Segoe UI","Mangal",sans-serif;
+    background:#f4fff4;
+    color:#1b1b1b;
+}
+header{
+    background:linear-gradient(135deg,#1b5e20,#4caf50);
+    color:#fff;
+    text-align:center;
+    padding:30px 20px;
+}
+header img{
+    width:140px;
+    margin-bottom:10px;
+}
+section{
+    background:#ffffff;
+    margin:25px auto;
+    padding:25px;
+    max-width:1100px;
+    border-radius:12px;
+    box-shadow:0 6px 15px rgba(0,0,0,0.08);
+}
+h1,h2,h3{
+    color:#1b5e20;
+}
+.btn{
+    display:inline-block;
+    background:#2e7d32;
+    color:#fff;
+    padding:10px 18px;
+    border-radius:25px;
+    text-decoration:none;
+    margin:6px;
+    font-weight:600;
+}
+.btn:hover{
+    background:#1b5e20;
+}
+.social a{
+    background:#388e3c;
+}
+footer{
+    background:#1b5e20;
+    color:#fff;
+    text-align:center;
+    padding:12px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===== WELCOME PAGE ===== -->
+<header>
+    <!-- LOGO -->
+    <img src="logo.webp" alt="Pandhari Farm Nursery Logo">
+
+    <h1>Welcome to Pandhari Farm & Nursery</h1>
+    <p>Quality Plants • Trusted Nursery • Farmer First</p>
+
+    <a class="btn" href="tel:7709200273">📞 Call</a>
+    <a class="btn" href="https://wa.me/917709200273" target="_blank">💬 WhatsApp</a>
+</header>
+
+<!-- ===== ABOUT ===== -->
+<section>
+<h2>About Pandhari Farm & Nursery</h2>
+<p>
+<b>Pandhari Farm & Nursery, Sangola</b><br>
+“शेतकऱ्यांच्या प्रगतीचा आधार – दर्जेदार रोपे हीच आमची ओळख”
+</p>
+<p>
+आम्ही अनेक वर्षांपासून शेतकऱ्यांना उच्च दर्जाची, grafted व खात्रीशीर
+फळझाडांची रोपे पुरवत आहोत. लागवडीपासून काढणीपर्यंत योग्य मार्गदर्शन
+देणे ही आमची खासियत आहे.
+</p>
+</section>
+
+<!-- ===== SERVICES / INFORMATION ===== -->
+<section>
+<h2>Our Speciality</h2>
+<ul>
+<li>Grafted & Certified Fruit Plants</li>
+<li>Guava, Apple Ber, Mango & Other Varieties</li>
+<li>Plantation Guidance</li>
+<li>Farmer Friendly Support</li>
+<li>Export Quality Varieties</li>
+</ul>
+</section>
+
+<!-- ===== LOCATION ===== -->
+<section>
+<h2>📍 Location</h2>
+<p>
+Pandhari Farm & Nursery<br>
+Sangola, Maharashtra
+</p>
+
+<!-- GOOGLE MAP LINK -->
+<a class="btn" 
+href="https://www.google.com/maps/search/Pandhari+Farm+Nursery+Sangola" 
+target="_blank">
+View on Google Map
+</a>
+</section>
+
+<!-- ===== SOCIAL MEDIA ===== -->
+<section class="social">
+<h2>Follow Us</h2>
+
+<a class="btn" href="https://www.instagram.com/pandhari_agrofarm?igsh=MmhiMDF1dmNsMHVi" target="_blank">
+Instagram
+</a>
+
+<a class="btn" href="https://www.facebook.com/share/18JHNQJVV9/?mibextid=wwXIfr" target="_blank">
+Facebook
+</a>
+
+<a class="btn" href="https://youtube.com/@pandharifarm?si=EhS3Uh1rP2DfEoP7" target="_blank">
+YouTube
+</a>
+</section>
+
+<!-- ===== CONTACT DETAILS ===== -->
+<section>
+<h2>📞 Contact Details</h2>
+<p>
+<b>Mobile:</b> 7709200273<br>
+<b>WhatsApp:</b> 7709200273<br>
+<b>Email:</b> pandharifarm@gmail.com
+</p>
+</section>
+
+<footer>
+© 2026 Pandhari Farm & Nursery | All Rights Reserved
+</footer>
+
+</body>
+</html>
+
+<section>
+<h2>🌱 शेतकऱ्यांसाठी संपूर्ण मार्गदर्शन</h2>
+
+<h3>1️⃣ रोपे घेताना काळजी</h3>
+<ul>
+<li>नेहमी grafted / certified रोपे घ्या</li>
+<li>मुळं पांढरी व ताजी असावीत</li>
+<li>रोपाची उंची 2–3 फूट योग्य</li>
+<li>पॉलिथीन फाटलेली नसावी</li>
+<li>पिवळसर, रोगट पाने असलेली रोपे टाळा</li>
+</ul>
+
+<h3>2️⃣ लागवडीपूर्वी जमीन तयारी</h3>
+<ul>
+<li>खड्डा: 2×2×2 किंवा 3×3×3 फूट</li>
+<li>15 दिवस आधी खड्डे उघडे ठेवा</li>
+<li>10–15 kg शेणखत</li>
+<li>250 g SSP</li>
+<li>50 g Trichoderma</li>
+<li>वरची माती मिसळून भरा</li>
+<li><b>ताजं शेणखत टाकू नका</b></li>
+</ul>
+
+<h3>3️⃣ लागवड करताना चुका टाळा</h3>
+<ul>
+<li>रोप फार खोल लावू नका</li>
+<li>कलम मातीखाली जाऊ देऊ नका</li>
+<li>लागवडीनंतर लगेच पाणी द्या</li>
+</ul>
+
+<h3>4️⃣ पाणी व्यवस्थापन</h3>
+<ul>
+<li>पहिलं वर्ष: 8–10 दिवसांनी पाणी</li>
+<li>पावसाळ्यात पाणी बंद</li>
+<li>पाणी साचू देऊ नका</li>
+<li>ड्रिप सिंचन उत्तम</li>
+</ul>
+
+<h3>5️⃣ खत व्यवस्थापन</h3>
+<ul>
+<li>पहिलं वर्ष: 10–15 kg शेणखत / झाड</li>
+<li>NPK कमी प्रमाणात, 2 हप्त्यात</li>
+<li>दुसऱ्या वर्षापासून वर्षातून 2 वेळा शेणखत</li>
+<li>फळधारणेनंतर पोटॅश जास्त</li>
+</ul>
+
+<h3>6️⃣ रोग व किड नियंत्रण</h3>
+<ul>
+<li>फळमाशी: 10 traps / एकर</li>
+<li>पडलेली फळं नष्ट करा</li>
+<li>भुरी / करपा: सुरुवातीलाच फवारणी</li>
+</ul>
+
+<h3>7️⃣ छाटणी (Pruning)</h3>
+<ul>
+<li>ॲपल बोर: एप्रिल–मे अनिवार्य</li>
+<li>पेरू: हलकी छाटणी</li>
+<li>आंबा: जास्त छाटणी टाळा</li>
+</ul>
+
+<h3>8️⃣ बहार व्यवस्थापन (पेरू)</h3>
+<ul>
+<li>योग्य वेळी पाणी तोडा</li>
+<li>झाडाला stress द्या</li>
+<li>नंतर खत + पाणी द्या</li>
+</ul>
+
+<h3>9️⃣ काढणी</h3>
+<ul>
+<li>खूप कच्ची किंवा खूप पिकलेली फळं तोडू नका</li>
+<li>सकाळी लवकर काढणी करा</li>
+<li>फळं सावलीत ठेवा</li>
+</ul>
+
+<h3>🔟 विक्री व मार्केटिंग</h3>
+<ul>
+<li>आधीच व्यापाऱ्याशी बोलणी ठेवा</li>
+<li>सगळी फळं एकाच दिवशी तोडू नका</li>
+<li>Premium varieties साठी वेगळा बाजार</li>
+</ul>
+</section>
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="UTF-8">
+<title>Fruit Varieties Guide</title>
+
+<style>
+/* ===== FONT & STYLE ===== */
+body{
+    font-family: "Noto Serif Devanagari", "Mangal", "Segoe UI", sans-serif;
+    background:#f5fff5;
+    color:#1b1b1b;
+    line-height:1.7;
+    padding:20px;
+}
+
+h1,h2,h3{
+    font-family:"Poppins","Segoe UI",sans-serif;
+    color:#1b5e20;
+}
+
+h2{
+    border-left:6px solid #4caf50;
+    padding-left:10px;
+    margin-top:40px;
+}
+
+h3{
+    color:#2e7d32;
+    margin-top:25px;
+}
+
+.section{
+    background:#ffffff;
+    padding:20px;
+    margin-bottom:25px;
+    border-radius:10px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.08);
+}
+
+ul{
+    margin-left:20px;
+}
+
+li{
+    margin-bottom:6px;
+}
+
+.badge{
+    display:inline-block;
+    background:#e8f5e9;
+    color:#1b5e20;
+    padding:4px 10px;
+    border-radius:20px;
+    font-size:14px;
+    margin-bottom:10px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🌱 शेतकऱ्यांसाठी फळझाड मार्गदर्शन</h1>
+
+<div class="section">
+<h2>🍐 पेरू (Guava) – Varieties</h2>
+
+<h3>Red Diamond Guava</h3>
+<ul>
+<li>फळ: लालसर गर, गोडसर, कमी बिया</li>
+<li>लागवड: 6×8 किंवा 8×10 फूट</li>
+<li>खत: NPK + Organic manure</li>
+<li>रोग: फळमाशी, भुरी</li>
+<li>काढणी: 1 वर्षानंतर; 2 बहार</li>
+<li>किंमत: Premium demand</li>
+</ul>
+
+<h3>Black Diamond Guava</h3>
+<ul>
+<li>फळ: जांभळट साल, गुलाबी गर</li>
+<li>लागवड: 8×10 फूट</li>
+<li>खत: NPK + Organic manure</li>
+<li>रोग: फळमाशी</li>
+<li>काढणी: 1–2 वर्षांत</li>
+<li>किंमत: Rare, premium</li>
+</ul>
+
+<h3>Taiwan Pink Guava</h3>
+<ul>
+<li>फळ: गुलाबी गर, 15 दिवस shelf life</li>
+<li>लागवड: Loamy soil (pH 5.5–7.0)</li>
+<li>खत: Organic + micronutrients</li>
+<li>उत्पादन: 9000 kg/acre</li>
+<li>किंमत: Export quality</li>
+</ul>
+
+<h3>VNR Bihi Guava</h3>
+<ul>
+<li>फळ: 300g–1.2kg आकार</li>
+<li>लागवड: 10×10 फूट (grafted)</li>
+<li>खत: Balanced NPK</li>
+<li>काढणी: 10–12 महिने</li>
+<li>किंमत: Export premium</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>🍎 ॲपल बोर (Apple Ber)</h2>
+
+<h3>Green Apple Ber</h3>
+<ul>
+<li>हिरवट, कुरकुरीत, गोडसर</li>
+<li>लागवड: 10×10 फूट</li>
+<li>छाटणी: एप्रिल–मे</li>
+<li>काढणी: नोव्हेंबर–फेब्रुवारी</li>
+</ul>
+
+<h3>Ball Sundari</h3>
+<ul>
+<li>मोठा आकार, लालसर रंग</li>
+<li>लागवड: 10×12 फूट</li>
+<li>काढणी: हिवाळा</li>
+<li>Premium demand</li>
+</ul>
+
+<h3>Miss India</h3>
+<ul>
+<li>आकर्षक लाल रंग</li>
+<li>कमी पाणी लागते</li>
+<li>काढणी: नोव्हेंबर–जानेवारी</li>
+<li>Export demand</li>
+</ul>
+
+<h3>Red King</h3>
+<ul>
+<li>गडद लाल, गोडसर</li>
+<li>लागवड: 10×12 फूट</li>
+<li>काढणी: हिवाळा</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>🥭 आंबा (Mango)</h2>
+
+<h3>Kesar</h3>
+<ul>
+<li>गोडसर, सुगंधी</li>
+<li>लागवड: 15×15 फूट</li>
+<li>काढणी: 3–4 वर्षांत</li>
+</ul>
+
+<h3>Miyazaki</h3>
+<ul>
+<li>अतिशय महाग, लालसर रंग</li>
+<li>Controlled environment</li>
+<li>काढणी: 4–5 वर्षांत</li>
+</ul>
+
+<h3>Hapus (Alphonso)</h3>
+<ul>
+<li>अतिशय गोड व सुगंधी</li>
+<li>काढणी: एप्रिल–मे</li>
+</ul>
+
+<h3>Amrapali</h3>
+<ul>
+<li>Hybrid, high yield</li>
+<li>Dense plantation</li>
+<li>काढणी: 3–4 वर्षांत</li>
+</ul>
+
+<h3>Thai All Season</h3>
+<ul>
+<li>वर्षातून 2 वेळा फळ</li>
+<li>Commercial variety</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>🦠 आंब्याचे रोग व नियंत्रण</h2>
+<ul>
+<li>भुरी: Wettable Sulphur 2g/L</li>
+<li>करपा: Copper Oxychloride 3g/L</li>
+<li>हॉपर्स: Imidacloprid / Thiamethoxam</li>
+<li>फळमाशी: Methyl eugenol traps</li>
+</ul>
+</div>
+
+</body>
+</html>    aviraj ghadage 8411835020
